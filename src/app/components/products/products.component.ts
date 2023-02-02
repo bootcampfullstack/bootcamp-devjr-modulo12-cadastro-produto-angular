@@ -43,16 +43,16 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  saveProduct(save: boolean) {
-    if (save) {
+  saveProduct(product : Product) {
+    if (product) {
       if (this.isEditing) {
-        this.productService.update(this.product).subscribe();
+        this.productService.update(product).subscribe();
       }
       else {
-        this.productService.save(this.product).subscribe({
+        this.productService.save(product).subscribe({
           next: data => {
             this.products.push(data);
-          }
+          } 
         });
       }
     }
