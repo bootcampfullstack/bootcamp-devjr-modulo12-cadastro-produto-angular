@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Category } from 'src/app/interfaces/Category';
 import { Product } from 'src/app/interfaces/Product';
 
@@ -24,10 +24,10 @@ export class ProductComponent implements OnInit, OnChanges {
   constructor(private formBuilder: FormBuilder) {
     this.formGroupProduct = this.formBuilder.group({
       id : {value:null, disabled:true},
-      name : [''],
-      description : [''],
-      category : [''],
-      price : [''],
+      name : ['', [Validators.required, Validators.minLength(3)]],
+      description : ['',[Validators.required]],
+      category : ['',[Validators.required]],
+      price : ['',[Validators.required]],
       newProduct : [''],
       promotion : ['']
     });
