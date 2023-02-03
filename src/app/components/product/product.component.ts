@@ -43,8 +43,10 @@ export class ProductComponent implements OnInit, OnChanges {
   }
 
   save(){
-    Object.assign(this.product, this.formGroupProduct.value);
-    this.saveEmitter.emit(true);
+    if(this.formGroupProduct.valid){
+      Object.assign(this.product, this.formGroupProduct.value);
+      this.saveEmitter.emit(true);
+    }
   }
 
   cancel(){
@@ -54,5 +56,10 @@ export class ProductComponent implements OnInit, OnChanges {
   selectedCategory(category1: Category, category2 : Category){
     return category1 && category2 ? category1.id === category2.id : false;
   }
+
+  get pfgName() {return this.formGroupProduct.get("name")}
+  get pfgDescription() {return this.formGroupProduct.get("description")}
+  get pfgCategory() {return this.formGroupProduct.get("category")}
+  get pfgPrice() {return this.formGroupProduct.get("price")}
 
 }
