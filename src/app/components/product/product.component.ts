@@ -23,7 +23,7 @@ export class ProductComponent implements OnInit, OnChanges {
   
   constructor(private formBuilder: FormBuilder) {
     this.formGroupProduct = this.formBuilder.group({
-      id : [''],
+      id : {value:null, disabled:true},
       name : [''],
       description : [''],
       category : [''],
